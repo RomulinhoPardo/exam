@@ -8,7 +8,7 @@ require("dotenv").config();
 
 mongoose.set("strictQuery", true);
 const app = express();
-const PORT = process.env.PORT || 3013;
+const PORT = process.env.PORT || 3004;
 
 app.use(cors());
 
@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 });
 
 mongoose
-  .connect(process.env.URI_MONGODB)
+  .connect("mongodb+srv://Team4-adm:Team4-adm@team4-wadit8516.lozycdh.mongodb.net/exam?retryWrites=true&w=majority")
   .then(() => console.log("Connect to MONGODB ROMULOPARDO is Successfully 👋"))
   .catch((error) => console.log("Connection fail MongoDB Atlas"));
 
