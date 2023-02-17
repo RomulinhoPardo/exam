@@ -1,7 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const singersRoute = require("./routes/singers");
+
+const SingersRoutes = require("./routes/SingersRoutes");
 
 require("dotenv").config();
 
@@ -13,7 +14,9 @@ app.use(cors());
 
 //midlewares
 app.use(express.json());
-app.use("/api", singersRoute);
+
+app.use("/api", SingersRoutes);
+
 
 //routes
 app.get("/", (req, res) => {
@@ -23,7 +26,7 @@ app.get("/", (req, res) => {
 
 mongoose
   .connect(process.env.URI_MONGODB)
-  .then(() => console.log("Connect to MONGODB TECHSTORE is Successfully 👋"))
+  .then(() => console.log("Connect to MONGODB ROMULOPARDO is Successfully 👋"))
   .catch((error) => console.log("Connection fail MongoDB Atlas"));
 
 app.listen(PORT, () => console.log("Server started on port", PORT));

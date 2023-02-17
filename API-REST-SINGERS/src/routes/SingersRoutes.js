@@ -1,13 +1,12 @@
 const express = require("express");
-const singersSchema = require("../models/singers");
+const singer = require("../models/singers");
 
 const router = express.Router();
 
-// create singer
+// create singers
 router.post("/singers", (req, res) => {
-  const singers= singersSchema(req.body);
-
-  singers
+  const singer = singer(req.body);
+  singer
     .save()
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
@@ -15,17 +14,15 @@ router.post("/singers", (req, res) => {
 
 // get all singers
 router.get("/singers", (req, res) => {
-  singersSchema
-    .find()
+  singer.find()
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
-// get a singers
+// get a singer
 router.get("/singers/:id", (req, res) => {
   const { id } = req.params;
-  singersSchema
-    .findById(id)
+  singer.findById(id)
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
@@ -33,18 +30,16 @@ router.get("/singers/:id", (req, res) => {
 // delete a singer
 router.delete("/singers/:id", (req, res) => {
   const { id } = req.params;
-  singersSchema
-    .deleteOne({ _id: id })
+  singer.deleteOne({ _id: id })
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });
 
-// update a user
+// update a singer
 router.put("/singers/:id", (req, res) => {
   const { id } = req.params;
-  const { name, type, country } = req.body;
-  singersSchema
-    .updateOne({ _id: id }, { $set: { name, type, country } })
+  const newsinger = req.body;
+  singer.findByIdAndUpdate(id, newsinger)
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
 });

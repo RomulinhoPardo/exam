@@ -3,21 +3,26 @@ const mongoose = require("mongoose");
 const singersSchema = mongoose.Schema(
   {
     name: {
-      Name: String,
-      required: true,
-    },
-    music: {
       type: String,
       required: true,
     },
-    Contry: {
-      country: String,
+    type: {
+      type: String,
+      required: true,
+    },
+    country: {
+      type: String,
+      required: true,
+    },
+    awards: {
+      type: String,
       required: true,
     },
   },
+
   {
     collection: "singers",
   }
 );
 
-module.exports = mongoose.model("singers", singersSchema);
+module.exports = Singers = mongoose.model("singers", singersSchema);
